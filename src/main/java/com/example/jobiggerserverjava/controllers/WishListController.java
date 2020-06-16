@@ -20,12 +20,12 @@ public class WishListController {
   @Autowired
   WishListService wishListService;
 
-  @PutMapping("/api/profiles/{username}/wishLists")
-  public int updateWishList(
-          @PathVariable("username") String username,
-          @RequestBody WishList updatedWishList) {
-    return wishListService.updateWishList(username, updatedWishList);
-  }
+//  @PutMapping("/api/profiles/{username}/wishLists")
+//  public int updateWishList(
+//          @PathVariable("username") String username,
+//          @RequestBody WishList updatedWishList) {
+//    return wishListService.updateWishList(username, updatedWishList);
+//  }
 
   @PutMapping("/api/profiles/{username}/wishLists")
   public int addJobIdToWishList(

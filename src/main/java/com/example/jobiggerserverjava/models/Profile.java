@@ -1,11 +1,14 @@
 package com.example.jobiggerserverjava.models;
 
 import java.time.LocalDate;
+import javax.persistence.*;
 
+@Entity
+@Table(name="profiles")
 public class Profile {
   private enum Role {VISITOR, EMPLOYEE, JOB_SEEKER, ADMIN}
 
-
+  @Id
   private String username;
   private String password;
   private Role role;

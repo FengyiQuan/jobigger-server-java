@@ -1,6 +1,12 @@
 package com.example.jobiggerserverjava.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="reviews")
 public class Review {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int reviewId;
   private int jobId;
   private String username;
