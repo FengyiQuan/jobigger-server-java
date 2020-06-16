@@ -4,7 +4,9 @@ import com.example.jobiggerserverjava.models.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProfileService {
   private List<Profile> profileInfo = new ArrayList<>();
 

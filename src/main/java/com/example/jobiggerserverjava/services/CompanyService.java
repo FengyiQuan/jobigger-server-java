@@ -5,7 +5,9 @@ import com.example.jobiggerserverjava.models.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CompanyService {
   private List<Company> companies = new ArrayList<>();
 

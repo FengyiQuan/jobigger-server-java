@@ -4,7 +4,9 @@ import com.example.jobiggerserverjava.models.WishList;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class WishListService {
   private List<WishList> wishLists = new ArrayList<>();
 
