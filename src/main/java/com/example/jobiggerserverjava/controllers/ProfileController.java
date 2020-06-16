@@ -21,7 +21,7 @@ public class ProfileController {
   @Autowired
   private ProfileService profileService;
 
-  @PutMapping("/api/profile/{username}")
+  @PutMapping("/api/profiles/{username}")
   public int updateProfile(
           @PathVariable("username") String username,
           @RequestBody Profile updatedProfile) {
@@ -34,24 +34,24 @@ public class ProfileController {
 //    return widgetService.createWidget(newWidget);
 //  }
 
-  @PostMapping("/api/profile/")
+  @PostMapping("/api/profiles/")
   public Profile createProfile(
           @RequestBody Profile newProfile) {
     return profileService.createProfile(newProfile);
   }
 
-  @GetMapping("/api/profile")
+  @GetMapping("/api/profiles")
   public List<Profile> findAllProfile() {
     return profileService.findAllProfile();
   }
 
-  @GetMapping("/api/profile/{username}")
+  @GetMapping("/api/profiles/{username}")
   public Profile findWidgetById(
           @PathVariable("username") String username) {
     return profileService.findProfileByUsername(username);
   }
 
-  @DeleteMapping("/api/profile/{username}")
+  @DeleteMapping("/api/profiles/{username}")
   public Integer deleteProfile(
           @PathVariable("username") String username) {
     return profileService.deleteProfile(username);
