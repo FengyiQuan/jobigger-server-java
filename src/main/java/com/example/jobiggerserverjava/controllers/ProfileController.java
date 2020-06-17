@@ -24,7 +24,7 @@ public class ProfileController {
   @Autowired
   private ProfileService profileService;
 
-  @PutMapping("/api/profiles/{username}")
+  @PutMapping("/api/profile/{username}")
   public int updateProfile(
           @PathVariable("username") String username,
           @RequestBody Profile updatedProfile) {
@@ -81,7 +81,9 @@ public class ProfileController {
 
   @PostMapping("/api/profile")
   public Profile profile(HttpSession session) {
+
     Profile currentUser = (Profile)session.getAttribute("currentUser");
+    System.out.println(currentUser.getUsername());
     return currentUser;
   }
 
