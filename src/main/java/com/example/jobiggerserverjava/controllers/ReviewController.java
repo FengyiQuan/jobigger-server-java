@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,7 +23,7 @@ public class ReviewController {
   private ReviewService reviewService;
 
   @PutMapping("/api/reviews/{rid}")
-  public int updateProfile(
+  public int updateReview(
           @PathVariable("rid") Integer rid,
           @RequestBody Review updatedReview) {
     return reviewService.updateReview(rid, updatedReview);
@@ -34,10 +35,11 @@ public class ReviewController {
 //    return widgetService.createWidget(newWidget);
 //  }
 
-  @PostMapping("/api/reviews/")
+  @PostMapping("/api/jobs/{jid}reviews/")
   public Review createReview(
+          @PathVariable int jid,
           @RequestBody Review newReview) {
-    return reviewService.createReview(newReview);
+    return reviewService.createReview(jid, newReview);
   }
 
   @GetMapping("/api/jobs/{jid}/reviews")

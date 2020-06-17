@@ -4,11 +4,13 @@ import com.example.jobiggerserverjava.models.Review;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class ReviewService {
   private List<Review> reviews = new ArrayList<>();
+
   {
     reviews.add(new Review(1, 1570743716, "chen", "nice job1"));
     reviews.add(new Review(11, 1570743716, "chen", "nice job2"));
@@ -65,7 +67,8 @@ public class ReviewService {
   }
 
 
-  public Review createReview( Review newReview) {
+  public Review createReview(int jid, Review newReview) {
+    newReview.setJobId(jid);
     reviews.add(newReview);
     return newReview;
   }

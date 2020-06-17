@@ -83,7 +83,6 @@ public class ProfileController {
   public Profile profile(HttpSession session) {
 
     Profile currentUser = (Profile)session.getAttribute("currentUser");
-    System.out.println(currentUser.getUsername());
     return currentUser;
   }
 
