@@ -59,15 +59,12 @@ public class ProfileService {
 //    return newProfile;
 //  }
 
-  public int updateProfile(String username, Profile updatedProfile) {
-
-    for (Profile p : this.profileInfo) {
-      if (p.getUsername().equals(username)) {
-        updatedProfile.setUsername(username);
-        this.profileInfo.set(this.profileInfo.indexOf(p), updatedProfile);
-        return 1;
-      }
+  public Profile updateProfile(String username, Profile updatedProfile) {
+    if (repository.findUserById(username) != null) {
+      return repository.save(updatedProfile);
     }
-    return 0;
+    else {
+      return null;
+    }
   }
 }

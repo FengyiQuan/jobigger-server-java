@@ -24,12 +24,25 @@ public class ProfileController {
   @Autowired
   private ProfileService profileService;
 
-  @PutMapping("/api/profile/{username}")
-  public int updateProfile(
-          @PathVariable("username") String username,
-          @RequestBody Profile updatedProfile) {
-    return profileService.updateProfile(username, updatedProfile);
+//  @PutMapping("/api/profile/{username}")
+//  public int updateProfile(
+//          @PathVariable("username") String username,
+//          @RequestBody Profile updatedProfile) {
+//    return profileService.updateProfile(username, updatedProfile);
+//  }
+
+
+
+  @PutMapping("/api/profile")
+  public Profile updateProfile(
+      HttpSession session,
+      @RequestBody Profile updatedProfile) {
+    Profile currentUser = (Profile)session.getAttribute("currentUser");
+    return profileService.updateProfile(currentUser.getUsername(), updatedProfile);
   }
+
+
+
 
 //  @PostMapping("/api/widgets")
 //  public Widget createStandaloneWidget(
