@@ -67,10 +67,10 @@ public class ProfileController {
 //    return profileService.findProfileByUsername(username);
 //  }
 //
-//  @DeleteMapping("/api/profiles/{username}")
-//  public Integer deleteProfile(
+//  @DeleteMapping("/api/profile/{username}")
+//  public void deleteProfile(
 //          @PathVariable("username") String username) {
-//    return profileService.deleteProfile(username);
+//     profileService.deleteProfile(username);
 //  }
 
 
@@ -120,6 +120,7 @@ public class ProfileController {
 //    currentUser.setDob(remoteProfile.getDob());
 //    currentUser.setPassword(remoteProfile.getPassword());
 //    currentUser.setEmail(remoteProfile.getEmail());
+//      System.out.println(remoteProfile.getUsername());
       return remoteProfile;
     }
   }

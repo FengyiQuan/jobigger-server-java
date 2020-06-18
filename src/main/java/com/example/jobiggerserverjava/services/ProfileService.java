@@ -3,8 +3,10 @@ package com.example.jobiggerserverjava.services;
 import com.example.jobiggerserverjava.models.Profile;
 
 import com.example.jobiggerserverjava.repositories.ProfileRepository;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,14 +44,8 @@ public class ProfileService {
     return profileInfo;
   }
 
-  public int deleteProfile(String username) {
-    for (Profile p : profileInfo) {
-      if (p.getUsername().equals(username)) {
-        profileInfo.remove(p);
-        return 1;
-      }
-    }
-    return 0;
+  public void deleteProfile(String username) {
+    repository.deleteById(username);
   }
 
 
@@ -62,8 +58,7 @@ public class ProfileService {
   public Profile updateProfile(String username, Profile updatedProfile) {
     if (repository.findUserById(username) != null) {
       return repository.save(updatedProfile);
-    }
-    else {
+    } else {
       return null;
     }
   }
