@@ -23,12 +23,11 @@ public class ReviewController {
   @Autowired
   private ReviewService reviewService;
 
-  @PutMapping("/api/jobs/{jid}/reviews/{username}")
+  @PutMapping("/api/reviews/{rid}")
   public Review updateReview(
-      @PathVariable int jid,
-      @PathVariable String username,
+      @PathVariable int rid,
       @RequestBody Review newReview) {
-    return reviewService.updateReview(jid, username, newReview);
+    return reviewService.updateReview(rid, newReview);
   }
 
 
@@ -50,11 +49,10 @@ public class ReviewController {
     return reviewService.findReviewByUsername(username);
   }
 
-  @DeleteMapping("/api/jobs/{jid}/reviews/{username}")
+  @DeleteMapping("/api/reviews/{rid}")
   public List<Review> deleteReview(
-      @PathVariable int jid,
-      @PathVariable String username) {
-    return reviewService.deleteReview(jid, username);
+      @PathVariable int rid) {
+    return reviewService.deleteReview(rid);
   }
 
 

@@ -16,6 +16,9 @@ public interface ReviewRepository extends CrudRepository<Review, Integer> {
   Review findReviewByJobIdAndUsername(@Param("jobId") Integer jobId,
       @Param("username") String username);
 
+  @Query("SELECT review FROM Review review WHERE review.reviewId=:reviewId")
+  Review findReviewByReviewId(@Param("reviewId") Integer reviewId);
+
   @Query("SELECT review FROM Review review WHERE review.profile.username=:username")
   List<Review> findReviewByUsername(@Param("username") String username);
 

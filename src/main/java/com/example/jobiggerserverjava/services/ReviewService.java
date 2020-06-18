@@ -7,6 +7,7 @@ import com.example.jobiggerserverjava.models.Job;
 import com.example.jobiggerserverjava.repositories.JobRepository;
 import com.example.jobiggerserverjava.repositories.ProfileRepository;
 import com.example.jobiggerserverjava.repositories.ReviewRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReviewService {
-  private List<Review> reviews = new ArrayList<>();
-
 
   @Autowired
   ReviewRepository repository;
@@ -25,7 +24,6 @@ public class ReviewService {
 
   @Autowired
   JobRepository jobRepository;
-
 
 
   public Review createReview(Integer jid, String username, Review newReview) {
@@ -44,15 +42,14 @@ public class ReviewService {
     return repository.findReviewByJobId(jobId);
   }
 
-  public List<Review> deleteReview(int jid, String username) {
-    Review toDelete = repository.findReviewByJobIdAndUsername(jid, username);
-    repository.deleteById(toDelete.getReviewId());
+  public List<Review> deleteReview(int rid) {
+    repository.deleteById(rid);
     List<Review> result = new ArrayList<>();
     return result;
   }
 
-  public Review updateReview(int jid, String username, Review newReview) {
-    Review toUpdate = repository.findReviewByJobIdAndUsername(jid, username);
+  public Review updateReview(int rid, Review newReview) {
+    Review toUpdate = repository.findReviewByReviewId(rid);
     toUpdate.setText(newReview.getText());
     return repository.save(toUpdate);
   }
