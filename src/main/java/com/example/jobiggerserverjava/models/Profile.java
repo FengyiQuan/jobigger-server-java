@@ -1,6 +1,7 @@
 package com.example.jobiggerserverjava.models;
 
 import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +15,17 @@ public class Profile {
   private Role role;
   private String email;
   private LocalDate dob;
+
+  public List<Review> getReviews() {
+    return reviews;
+  }
+
+  public void setReviews(List<Review> reviews) {
+    this.reviews = reviews;
+  }
+
+  @OneToMany(mappedBy="profile")
+  private List<Review> reviews;
 
   public Profile() {
   }

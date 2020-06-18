@@ -19,53 +19,65 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 public class ReviewController {
+
   @Autowired
   private ReviewService reviewService;
 
-  @PutMapping("/api/reviews/{rid}")
-  public int updateReview(
-          @PathVariable("rid") Integer rid,
-          @RequestBody Review updatedReview) {
-    return reviewService.updateReview(rid, updatedReview);
+  @PutMapping("/api/jobs/{jid}/reviews/{username}")
+  public Review updateReview(
+      @PathVariable int jid,
+      @PathVariable String username,
+      @RequestBody Review newReview) {
+    return reviewService.updateReview(jid, username, newReview);
   }
 
-//  @PostMapping("/api/widgets")
-//  public Widget createStandaloneWidget(
-//          @RequestBody Widget newWidget) {
-//    return widgetService.createWidget(newWidget);
-//  }
 
-  @PostMapping("/api/jobs/{jid}reviews/")
+  @PostMapping("/api/jobs/{jid}/reviews/{username}")
   public Review createReview(
-          @PathVariable int jid,
-          @RequestBody Review newReview) {
-    return reviewService.createReview(jid, newReview);
+      @PathVariable int jid,
+      @PathVariable String username,
+      @RequestBody Review newReview) {
+    return reviewService.createReview(jid, username, newReview);
   }
 
   @GetMapping("/api/jobs/{jid}/reviews")
   public List<Review> findReviewByJob(@PathVariable("jid") Integer jid) {
-    return reviewService.findReviewByJob(jid);
+    return reviewService.findReviewByJobId(jid);
   }
 
-  @GetMapping("/api/profiles/{username}/reviews")
-  public List<Review> findReviewByUsername(
-          @PathVariable("username") String username) {
+  @GetMapping("/api/reviews/{username}")
+  public List<Review> findReviewByUsername(@PathVariable("username") String username) {
     return reviewService.findReviewByUsername(username);
   }
 
-  @GetMapping("/api/reviews/{rid}")
-  public Review findReviewById(@PathVariable("rid") Integer rid) {
-    return reviewService.findReviewById(rid);
+  @DeleteMapping("/api/jobs/{jid}/reviews/{username}")
+  public List<Review> deleteReview(
+      @PathVariable int jid,
+      @PathVariable String username) {
+    return reviewService.deleteReview(jid, username);
   }
 
-  @GetMapping("/api/reviews/")
-  public List<Review> findAllReview() {
-    return reviewService.findAllReview();
-  }
 
-  @DeleteMapping("/api/reviews/{rid}")
-  public Integer deleteReview(
-          @PathVariable("rid") Integer rid) {
-    return reviewService.deleteReview(rid);
-  }
+//
+//  @GetMapping("/api/profiles/{username}/reviews")
+//  public List<Review> findReviewByUsername(
+//          @PathVariable("username") String username) {
+//    return reviewService.findReviewByUsername(username);
+//  }
+//
+//  @GetMapping("/api/reviews/{rid}")
+//  public Review findReviewById(@PathVariable("rid") Integer rid) {
+//    return reviewService.findReviewById(rid);
+//  }
+//
+//  @GetMapping("/api/reviews/")
+//  public List<Review> findAllReview() {
+//    return reviewService.findAllReview();
+//  }
+//
+//  @DeleteMapping("/api/reviews/{rid}")
+//  public Integer deleteReview(
+//          @PathVariable("rid") Integer rid) {
+//    return reviewService.deleteReview(rid);
+//  }
 }

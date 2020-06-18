@@ -27,12 +27,13 @@ public class WishListController {
 //    return wishListService.updateWishList(username, updatedWishList);
 //  }
 
-  @PutMapping("/api/profiles/{username}/wishLists")
-  public int addJobIdToWishList(
-          @PathVariable("username") String username,
-          @RequestBody int jid) {
-    return wishListService.addJobIdToWishList(username, jid);
-  }
+
+//  @PutMapping("/api/profiles/{username}/wishLists")
+//  public int addJobIdToWishList(
+//          @PathVariable("username") String username,
+//          @RequestBody int jid) {
+//    return wishListService.addJobIdToWishList(username, jid);
+//  }
 
   @PostMapping("/api/wishLists/")
   public WishList createWishList(

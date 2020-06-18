@@ -1,5 +1,6 @@
 package com.example.jobiggerserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
@@ -8,19 +9,11 @@ public class Review {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int reviewId;
-  private int jobId;
-  private String username;
-  private String text;
 
-  public Review() {
-  }
-
-  public Review(int reviewId, int jobId, String username, String text) {
-    this.reviewId = reviewId;
-    this.jobId = jobId;
-    this.username = username;
-    this.text = text;
-  }
+  @ManyToOne
+  @JsonIgnore
+  @PrimaryKeyJoinColumn(name = "jobId", referencedColumnName="ID")
+  Job job;
 
   public int getReviewId() {
     return reviewId;
@@ -30,20 +23,36 @@ public class Review {
     this.reviewId = reviewId;
   }
 
-  public int getJobId() {
-    return jobId;
+  @ManyToOne
+  @JsonIgnore
+  @PrimaryKeyJoinColumn(name = "username", referencedColumnName="ID")
+  Profile profile;
+
+  private String text;
+
+  public Review(Job job, Profile profile, String text) {
+    this.job = job;
+    this.profile = profile;
+    this.text = text;
   }
 
-  public void setJobId(int jobId) {
-    this.jobId = jobId;
+  public Review() {
   }
 
-  public String getUsername() {
-    return username;
+  public Job getJob() {
+    return job;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setJob(Job job) {
+    this.job = job;
+  }
+
+  public Profile getProfile() {
+    return profile;
+  }
+
+  public void setProfile(Profile profile) {
+    this.profile = profile;
   }
 
   public String getText() {
@@ -53,4 +62,8 @@ public class Review {
   public void setText(String text) {
     this.text = text;
   }
+
+  public String getUsername() {return this.profile.getUsername();}
+
+  public Integer getJobId() {return this.job.getJobId();}
 }

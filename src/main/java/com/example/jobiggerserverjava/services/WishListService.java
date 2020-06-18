@@ -46,13 +46,13 @@ public class WishListService {
     return 0;
   }
 
-  public int addJobIdToWishList(String username, int jid) {
-    for (WishList w : this.wishLists) {
-      if (w.getUsername().equals(username)) {
-        w.getJobIds().add(jid);
-        return 1;
-      }
-    }
-    return 0;
-  }
+//  public int addJobIdToWishList(String username, int jid) {
+//    for (WishList w : this.wishLists) {
+//      if (w.getUsername().equals(username)) {
+//        w.getJobIds().add(jid);
+//        return 1;
+//      }
+//    }
+//    return 0;
+//  }
 }
