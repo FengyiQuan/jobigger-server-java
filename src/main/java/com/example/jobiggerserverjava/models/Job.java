@@ -4,19 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Job {
-//
-//  public WishList getWishList() {
-//    return wishList;
-//  }
-//
-//  public void setWishList(WishList wishList) {
-//    this.wishList = wishList;
-//  }
 
   @Id
   private int jobId;
@@ -25,9 +18,18 @@ public class Job {
   @OneToMany(mappedBy="job")
   private List<Review> reviews;
 
-//  @ManyToOne
-//  @JsonIgnore
-//  private WishList wishList;
+
+  @ManyToMany
+  @JsonIgnore
+  private List<Profile> users;
+
+  public List<Profile> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<Profile> users) {
+    this.users = users;
+  }
 
   public List<Review> getReviews() {
     return reviews;
@@ -44,6 +46,8 @@ public class Job {
     this.jobName = jobName;
   }
 
+
+
   public int getJobId() {
     return jobId;
   }
@@ -59,4 +63,5 @@ public class Job {
   public void setJobName(String jobName) {
     this.jobName = jobName;
   }
+
 }

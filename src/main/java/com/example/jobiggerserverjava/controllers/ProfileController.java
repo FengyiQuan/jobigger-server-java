@@ -95,8 +95,38 @@ public class ProfileController {
   @PostMapping("/api/profile")
   public Profile profile(HttpSession session) {
 
-    Profile currentUser = (Profile)session.getAttribute("currentUser");
+    Profile currentUser = (Profile) session.getAttribute("currentUser");
+//    if (currentUser == null) {
+//      return null;
+//    } else {
+////      Profile remoteProfile = profileService.findProfileByUsername(currentUser.getUsername());
+////    currentUser.setDob(remoteProfile.getDob());
+////    currentUser.setPassword(remoteProfile.getPassword());
+////    currentUser.setEmail(remoteProfile.getEmail());
+//      return currentUser;
+//    }
     return currentUser;
+  }
+
+
+  @GetMapping("/api/profile")
+  public Profile getProfile(HttpSession session) {
+
+    Profile currentUser = (Profile) session.getAttribute("currentUser");
+    if (currentUser == null) {
+      return null;
+    } else {
+      Profile remoteProfile = profileService.findProfileByUsername(currentUser.getUsername());
+//    currentUser.setDob(remoteProfile.getDob());
+//    currentUser.setPassword(remoteProfile.getPassword());
+//    currentUser.setEmail(remoteProfile.getEmail());
+      return remoteProfile;
+    }
+  }
+
+  @GetMapping("/api/profile/{username}")
+  public Profile findProfileByUsername(@PathVariable String username) {
+    return profileService.findProfileByUsername(username);
   }
 
   @PostMapping("/api/logout")
