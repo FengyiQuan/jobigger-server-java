@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.jobiggerserverjava.models.Job;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(
+    origins = "https://jobigger-react2.herokuapp.com",
+    allowCredentials = "true")
 public class WishListController {
 
   @Autowired

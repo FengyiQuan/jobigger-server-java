@@ -17,7 +17,9 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(
+    origins = "https://jobigger-react2.herokuapp.com",
+    allowCredentials = "true")
 public class ReviewController {
 
   @Autowired
