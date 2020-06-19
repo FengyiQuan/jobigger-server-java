@@ -78,9 +78,16 @@ public class ProfileController {
   public Profile register(
       @RequestBody Profile profile,
       HttpSession session) {
-    Profile currentUser = profileService.createProfile(profile);
-    session.setAttribute("currentUser", currentUser);
-    return currentUser;
+//    Profile currentUser = profileService.createProfile(profile);
+////    session.setAttribute("currentUser", currentUser);
+////    return currentUser;
+    Profile existingUser = profileService.findProfileByUsername(profile.getUsername());
+    if(existingUser == null) {
+      Profile currentUser = profileService.createProfile(profile);
+      session.setAttribute("currentUser", currentUser);
+      return currentUser;
+    }
+    return null;
   }
 
   @PostMapping("/api/login")
@@ -89,6 +96,7 @@ public class ProfileController {
       HttpSession session) {
     Profile currentUser = profileService.findProfileByCredentials(user.getUsername(), user.getPassword());
     session.setAttribute("currentUser", currentUser);
+//    System.out.println(currentUser.getUsername());
     return currentUser;
   }
 
