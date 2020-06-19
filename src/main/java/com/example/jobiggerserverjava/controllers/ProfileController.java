@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(
-    origins = "https://jobigger-react2.herokuapp.com/",
+    origins = "https://jobigger-react2.herokuapp.com",
     allowCredentials = "true")
 public class ProfileController {
   @Autowired
